@@ -23,9 +23,9 @@
 {% if error_404 or urly or error_href %}
 <div style="margin-top: 5px; margin-bottom: 15px;">
   {% if error_404 %}Oops - we couldn't find that logg.ly.{% endif %}
-  {% if error_href %}Oops - that address doesn't look right... we can't create a short url from it.{% endif %}
+  {% if error_href %}Oops - that address doesn't look right.  Hoover can't create a miracle from it.{% endif %}
   {% if urly %}
-  {{ urly.href }} is now fucking short, and <b>its already on your god damn clipboard</b>!<br/>
+  {{ urly.href }} is now short, and <b>Hoover has hacked it into your clipboard</b>!<br/>
   <input id="href" name="href" type="text" style="margin-top: 5px; padding: 3px; width: 600px; border: 1px solid #cccccc;" value="http://log.ly/{{ urly.code }}" />
   <script type="text/javascript" language="javascript">window.onload = copy("http://log.ly/{{ urly.code }}");</script>
   <script type="text/javascript" language="javascript">window.onload = focus("href");</script>
@@ -50,7 +50,7 @@
 {% endif %}
 
 {% if not urly %}
-<div style="padding-bottom: 3px;">Enter a long URL below and we'll make it fucking short:</div>
+<div style="padding-bottom: 3px;">Enter a long URL below and Hoover will make it short:</div>
 <form action="new.html" method="get" accept-charset="utf-8">
 <textarea style="margin-bottom: 5px; width: 100%; border: 1px solid #cccccc;" name="href" id="href" rows="4">{{ default_href }}</textarea>
 <input type="submit" value="Create" />
