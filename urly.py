@@ -78,10 +78,10 @@ class Urly(db.Model):
             u = None
         
         if u is not None:
-            logging.info("Urly.find_by_code() cache HIT: %s", str(code))
+            #logging.info("Urly.find_by_code() cache HIT: %s", str(code))
             return u        
 
-        logging.info("Urly.find_by_code() cache MISS: %s", str(code))
+        #logging.info("Urly.find_by_code() cache MISS: %s", str(code))
         aid = Urly.code_to_id(code)
         try:
             u = Urly.get_by_id(int(aid))

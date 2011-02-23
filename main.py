@@ -33,6 +33,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext import db
 from urly import Urly
 from view import MainView
+import loggly
 
 # do some redirect shizzle for the bizzle that is izzle
 class RedirectHandler(webapp.RequestHandler):
@@ -46,6 +47,7 @@ class MainHandler(webapp.RequestHandler):
     """
     def get(self, code, format):
         if (code is None):
+            logging.info("someone thinking about crafting a URL")
             MainView.render(self, 200, None, format)
             return
         
@@ -55,18 +57,22 @@ class MainHandler(webapp.RequestHandler):
             try:
                 u = Urly.find_or_create_by_href(href)
                 if u is not None:
+                    logging.info("creating urly by href: %s", str(href))
                     MainView.render(self, 200, u, format, href, title)
                 else:
-                    logging.error("Error creating urly by href: %s", str(href))
+                    logging.info("error creating urly by href: %s", str(href))
                     MainView.render(self, 400, None, format, href)
             except db.BadValueError:
                 # href parameter is bad
+                logging.info("error with parameter")
                 MainView.render(self, 400, None, format, href)
         else:
             u = Urly.find_by_code(str(code))
             if u is not None:
+                logging.info("http://logg.ly/%s redirecting to %s" % (code, u.href))
                 MainView.render(self, 200, u, format)
             else:
+                logging.info("redirecting to loggly.com/%s" % code)
                 self.redirect('http://www.loggly.com/%s' % code)
     
     def head(self, code, format):
@@ -85,6 +91,7 @@ def main():
        ('/([a-zA-Z0-9]{1,3})?(.xml|.json|.html|.txt)?', MainHandler), 
        ('/(.*?)', RedirectHandler) 
     ], debug=True)
+    hoover = loggly.LogglyLogger('http://logs.loggly.com/inputs/7e7a83a8-3f2b-457e-9a1a-7805c0329d6f', logging.INFO)
     wsgiref.handlers.CGIHandler().run(application)
 
 if __name__ == '__main__':
