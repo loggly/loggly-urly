@@ -34,6 +34,11 @@ from google.appengine.ext import db
 from urly import Urly
 from view import MainView
 
+# do some redirect shizzle for the bizzle that is izzle
+class RedirectHandler(webapp.RequestHandler):
+    def get(self, group):
+        self.redirect('http://www.loggly.com/%s' % group)
+
 class MainHandler(webapp.RequestHandler):
     """All non-static requests go through this handler.
     The code and format parameters are pre-populated by
@@ -46,6 +51,8 @@ class MainHandler(webapp.RequestHandler):
         
         href = self.request.get('href').strip().encode('utf-8')
         title = self.request.get('title').strip().encode('utf-8')
+        if href is not None:
+            href = "/"
         if (code == 'new') and (href is not None):
             try:
                 u = Urly.find_or_create_by_href(href)
@@ -62,7 +69,7 @@ class MainHandler(webapp.RequestHandler):
             if u is not None:
                 MainView.render(self, 200, u, format)
             else:
-                MainView.render(self, 404, None, format)
+                self.redirect('http://www.loggly.com/%s' % code)
     
     def head(self, code, format):
         if (code is None):
@@ -75,8 +82,10 @@ class MainHandler(webapp.RequestHandler):
                 self.error(404)
 
 def main():
+    # max key length is 3, otherwise we redirect to loggly
     application = webapp.WSGIApplication([
-        ('/([a-zA-Z0-9]{1,6})?(.xml|.json|.html|.txt)?', MainHandler)
+       ('/([a-zA-Z0-9]{1,3})?(.xml|.json|.html|.txt)?', MainHandler), 
+       ('/(.*?)', RedirectHandler) 
     ], debug=True)
     wsgiref.handlers.CGIHandler().run(application)
 

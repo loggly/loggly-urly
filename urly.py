@@ -17,7 +17,7 @@ class Urly(db.Model):
     href = db.LinkProperty(required=True)
     created_at = db.DateTimeProperty(auto_now_add=True)
 
-    KEY_BASE = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    KEY_BASE = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     BASE = 62
 
     def code(self):
@@ -43,7 +43,7 @@ class Urly(db.Model):
         return msg
 
     def to_text(self):
-        return "http://ur.ly/%s" % self.code()
+        return "http://logg.ly/%s" % self.code()
 
     def save_in_cache(self):
         """We don't really care if this fails"""

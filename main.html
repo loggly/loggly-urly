@@ -8,10 +8,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-  <title>ur.ly - dang short urls</title>
+  <title>logg.ly - short urls</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta property="og:title" content="ur.ly" />
-  <meta property="og:url" content="http://ur.ly/" />
+  <meta property="og:title" content="logg.ly" />
+  <meta property="og:url" content="http://logg.ly/" />
   <meta property="og:type" content="website" />
   <meta property="fb:admins" content="534232326" />
   <script type="text/javascript" src="static/urly.js"></script>
@@ -20,22 +20,17 @@
 <body style="font-family: verdana, arial; font-size: 80%; text-align: center">
 <div style="margin: 0 auto; width: 600px; padding: 20px; text-align: left;">
 
-<span style="float: right">
-  <a href="http://code.google.com/appengine/"><img border="0" src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" /></a>
-</span>
-<a href="/"><img border="0" style="padding-top: 3px;" src="static/urly.gif" alt=" - dang short urls" /></a>
-
 {% if error_404 or urly or error_href %}
 <div style="margin-top: 5px; margin-bottom: 15px;">
-  {% if error_404 %}Oops - we couldn't find that urly.{% endif %}
-  {% if error_href %}Oops - that address doesn't look right... we can't create a dang short url from it.{% endif %}
+  {% if error_404 %}Oops - we couldn't find that logg.ly.{% endif %}
+  {% if error_href %}Oops - that address doesn't look right... we can't create a short url from it.{% endif %}
   {% if urly %}
-  {{ urly.href }} is now dang short, and <b>its already on your clipboard</b>.<br />
-  <input id="href" name="href" type="text" style="margin-top: 5px; padding: 3px; width: 600px; border: 1px solid #cccccc;" value="http://ur.ly/{{ urly.code }}" />
-  <script type="text/javascript" language="javascript">window.onload = copy("http://ur.ly/{{ urly.code }}");</script>
+  {{ urly.href }} is now fucking short, and <b>its already on your god damn clipboard</b>!<br/>
+  <input id="href" name="href" type="text" style="margin-top: 5px; padding: 3px; width: 600px; border: 1px solid #cccccc;" value="http://log.ly/{{ urly.code }}" />
+  <script type="text/javascript" language="javascript">window.onload = copy("http://log.ly/{{ urly.code }}");</script>
   <script type="text/javascript" language="javascript">window.onload = focus("href");</script>
   <div style="margin-top:15px">
-    Tweet about your ur.ly:
+    Tweet about your logg.ly:
     <div id="tbox"></div>
     <script type="text/javascript">
       twttr.anywhere(function (T) {
@@ -43,28 +38,27 @@
           height: 65,
           width: 600,
           counter: false,
-          defaultContent: "{{ title }} http://ur.ly/{{ urly.code }}",
+          defaultContent: "{{ title }} http://logg.ly/{{ urly.code }}",
           label: " "
         });
       });
     </script>
-  <a href="http://ur.ly/{{ urly.code }}">Try your ur.ly</a> or share on <a href="http://twitter.com/home?status={{ title|urlencode }}+http%3A%2F%2Fur.ly%2F{{ urly.code }}">Twitter</a> or <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fur.ly%2F{{ urly.code }}&t={{ title|urlencode }}">Facebook</a>  
+  <a href="http://logg.ly/{{ urly.code }}">Try your logg.ly</a> or share on <a href="http://twitter.com/home?status={{ title|urlencode }}+http%3A%2F%2Flogg.ly%2F{{ urly.code }}">Twitter</a> or <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Flogg.ly%2F{{ urly.code }}&t={{ title|urlencode }}">Facebook</a>  
   </div>
   {% endif %}
 </div>
 {% endif %}
 
 {% if not urly %}
-<div style="padding-bottom: 3px;">Enter a long URL below and we'll make it dang short:</div>
+<div style="padding-bottom: 3px;">Enter a long URL below and we'll make it fucking short:</div>
 <form action="new.html" method="get" accept-charset="utf-8">
 <textarea style="margin-bottom: 5px; width: 100%; border: 1px solid #cccccc;" name="href" id="href" rows="4">{{ default_href }}</textarea>
 <input type="submit" value="Create" />
 </form>
 {% endif %}
 
-<div style="margin-top: 10px; padding-top: 5px; border-top: 1px solid #f1f1f1;"><span style="float: right"><a href="http://github.com/ajstiles/urly">Code</a> and <a href="http://wiki.github.com/ajstiles/urly">API</a></span>
-  Drag this link to your browser toolbar:&nbsp;
-  <a href="javascript:location.href='http://ur.ly/new.html?href='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title)">ur.ly!</a>
+  <p>Drag this link to your browser toolbar:&nbsp;
+  <a href="javascript:location.href='http://logg.ly/new.html?href='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title)">logg.ly!</a></p>
 </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
