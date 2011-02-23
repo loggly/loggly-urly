@@ -50,7 +50,8 @@ class MainHandler(webapp.RequestHandler):
             logging.info("someone thinking about crafting a URL")
             MainView.render(self, 200, None, format)
             return
-        
+
+        ip = self.request.remote_addr 
         href = self.request.get('href').strip().encode('utf-8')
         title = self.request.get('title').strip().encode('utf-8')
         if (code == 'new') and (href is not None):
@@ -69,7 +70,7 @@ class MainHandler(webapp.RequestHandler):
         else:
             u = Urly.find_by_code(str(code))
             if u is not None:
-                logging.info("http://logg.ly/%s redirecting to %s" % (code, u.href))
+                logging.info("http://logg.ly/%s redirecting to %s for %s" % (code, u.href, ip))
                 MainView.render(self, 200, u, format)
             else:
                 logging.info("redirecting to loggly.com/%s" % code)
