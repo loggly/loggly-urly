@@ -31,8 +31,8 @@
   {% if error_href %}Oops - that address doesn't look right.  Hoover can't create a miracle from it.{% endif %}
   {% if urly %}
   {{ urly.href }} is now short, and <b>Hoover has hacked it into your clipboard</b>!<br/>
-  <input id="href" name="href" type="text" style="margin-top: 5px; padding: 3px; width: 600px; border: 1px solid #cccccc;" value="http://log.ly/{{ urly.code }}" />
-  <script type="text/javascript" language="javascript">window.onload = copy("http://log.ly/{{ urly.code }}");</script>
+  <input id="href" name="href" type="text" style="margin-top: 5px; padding: 3px; width: 600px; border: 1px solid #cccccc;" value="http://logg.ly/{{ urly.code }}" />
+  <script type="text/javascript" language="javascript">window.onload = copy("http://logg.ly/{{ urly.code }}");</script>
   <script type="text/javascript" language="javascript">window.onload = focus("href");</script>
   <div style="margin-top:15px">
     Tweet about your logg.ly:
