@@ -35,6 +35,8 @@ from urly import Urly
 from view import MainView
 import loggly
 
+HOOVER = loggly.LogglyLogger('http://logs.loggly.com/inputs/7e7a83a8-3f2b-457e-9a1a-7805c0329d6f', logging.INFO)
+
 # do some redirect shizzle for the bizzle that is izzle
 class RedirectHandler(webapp.RequestHandler):
     def get(self, group):
@@ -92,7 +94,6 @@ def main():
        ('/([a-zA-Z0-9]{1,3})?(.xml|.json|.html|.txt)?', MainHandler), 
        ('/(.*?)', RedirectHandler) 
     ], debug=True)
-    hoover = loggly.LogglyLogger('http://logs.loggly.com/inputs/7e7a83a8-3f2b-457e-9a1a-7805c0329d6f', logging.INFO)
     wsgiref.handlers.CGIHandler().run(application)
 
 if __name__ == '__main__':
